@@ -7,9 +7,9 @@ import javax.inject.Inject
 
 
 class GetDirectionsUseCase @Inject constructor(schedulersProvider: SchedulersProvider,
-                                               private val directionsRepository: DirectionsRepository) : ObservableUseCase<Unit, Direction>(schedulersProvider) {
+                                               private val directionsRepository: DirectionsRepository) : ObservableUseCase<DirectionsParam, Direction>(schedulersProvider) {
 
-    override fun createUseCaseObservable(param: Unit): Observable<Direction> {
-        return directionsRepository.getDirectionTo(20.0, 30.0)
+    override fun createUseCaseObservable(directionsParam: DirectionsParam): Observable<Direction> {
+        return directionsRepository.getDirectionTo(directionsParam.latitude, directionsParam.longitude, directionsParam.locationEnabled)
     }
 }

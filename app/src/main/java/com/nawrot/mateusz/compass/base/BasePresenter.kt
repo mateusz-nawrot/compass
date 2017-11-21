@@ -6,7 +6,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 open class BasePresenter<V : BaseView> {
 
-    private var compositeDisposable = CompositeDisposable()
+    protected var compositeDisposable = CompositeDisposable()
 
     protected var view: V? = null
 
@@ -16,6 +16,6 @@ open class BasePresenter<V : BaseView> {
 
     @CallSuper
     open fun detachView() {
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 }

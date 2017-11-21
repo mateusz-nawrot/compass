@@ -8,7 +8,7 @@ import javax.inject.Inject
 class SplashScreenPresenter @Inject constructor(private val initializeAppUseCase: InitializeAppUseCase) : BasePresenter<SplashScreenView>() {
 
     fun initializeApp() {
-        initializeAppUseCase.execute(Unit).subscribe { view?.navigateToHomeScreen() }
+        compositeDisposable.add(initializeAppUseCase.execute(Unit).subscribe { view?.navigateToHomeScreen() })
     }
 
 }

@@ -5,12 +5,12 @@ import com.nawrot.mateusz.compass.base.BaseView
 
 interface CompassView : BaseView {
 
-    fun rotateCompass(angle: Double)
+    fun rotateCompass(angle: Float)
 
-    fun getDestinationLatitude(): Double
+    fun getDestinationLatitude(): Double?
 
-    fun getDestinationLongitude(): Double
+    fun getDestinationLongitude(): Double?
 
-    fun showError(errorMessage: String)
+    fun showLocationPermissionRationale()
 
 }

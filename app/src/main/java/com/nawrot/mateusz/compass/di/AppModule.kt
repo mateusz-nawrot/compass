@@ -2,6 +2,7 @@ package com.nawrot.mateusz.compass.di
 
 import android.content.Context
 import android.hardware.SensorManager
+import android.location.LocationManager
 import com.nawrot.mateusz.compass.App
 import com.nawrot.mateusz.compass.data.base.AndroidSchedulersProvider
 import com.nawrot.mateusz.compass.data.directions.MNDirectionsRepository
@@ -37,46 +38,12 @@ abstract class AppModule {
         fun provideSensorManager(context: Context): SensorManager {
             return context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         }
-//
-//        @JvmStatic
-//        @Provides
-//        @Named("applicationId")
-//        fun applicationId(context: Context) : String {
-//            return context.getString(R.string.application_id)
-//        }
-//
-//        @JvmStatic
-//        @Provides
-//        @Named("apiKey")
-//        fun apiKey(context: Context) : String {
-//            return context.getString(R.string.rest_api_key)
-//        }
-//
-//        @JvmStatic
-//        @Provides
-//        @Singleton
-//        fun okHttpClient(): OkHttpClient {
-//            val builder = OkHttpClient.Builder()
-//            builder.retryOnConnectionFailure(true)
-//
-//            val logInterceptor = HttpLoggingInterceptor()
-//            logInterceptor.level = HttpLoggingInterceptor.Level.BODY
-//            builder.addInterceptor(logInterceptor)
-//            return builder.build()
-//        }
-//
-//        @JvmStatic
-//        @Provides
-//        @Singleton
-//        fun retrofit(okHttpClient: OkHttpClient, @Named("applicationId") applicationId: String, @Named("apiKey") apiKey: String) : Retrofit {
-//            return Retrofit.Builder()
-//                    .baseUrl("https://api.backendless.com/$applicationId/$apiKey/")
-//                    .addConverterFactory(MoshiConverterFactory.create())
-//                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//                    .client(okHttpClient)
-//                    .build()
-//        }
-//
+
+        @JvmStatic
+        @Provides
+        fun provideLocationManager(context: Context): LocationManager {
+            return context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        }
     }
 
 }

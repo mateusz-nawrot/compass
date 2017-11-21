@@ -2,4 +2,8 @@
     <string name="app_name">compass</string>
     <string name="action_settings">Settings</string>
     <string name="splash_screen_title">compass</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="location_rationale_message">Without location permission compass indication will not be precise</string>
+    <string name="grant_location_permission">Grant</string>
 </resources>
