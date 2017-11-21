@@ -6,4 +6,8 @@
     <string name="longitude">Longitude</string>
     <string name="location_rationale_message">Without location permission compass indication will not be precise</string>
     <string name="grant_location_permission">Grant</string>
+    <string name="destination_dialog_title">Destination coordinates</string>
+    <string name="destination_dialog_message">Please enter destination coordinates</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
 </resources>

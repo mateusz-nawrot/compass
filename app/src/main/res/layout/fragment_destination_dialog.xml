@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2017 Nedbank. All rights reserved.
+  -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:paddingTop="24dp">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_gravity="fill_horizontal"/>
+
+    <TextView
+        android:id="@+id/rate_the_app_dialog_title"
+        style="@style/DestinationDialog.Title"
+        android:text="@string/destination_dialog_title"/>
+
+    <TextView
+        android:id="@+id/rate_the_app_dialog_message"
+        style="@style/DestinationDialog.Message"
+        android:text="@string/destination_dialog_message"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dialog_horizontal_margin"
+        android:layout_marginRight="@dimen/dialog_horizontal_margin">
+
+        <EditText
+            android:id="@+id/latitudeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/latitude"
+            android:inputType="numberDecimal"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dialog_horizontal_margin"
+        android:layout_marginRight="@dimen/dialog_horizontal_margin">
+
+        <EditText
+            android:id="@+id/longitudeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/longitude"
+            android:inputType="numberDecimal"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dialogCancelButton"
+            style="@style/DestinationDialog.Button"
+            android:layout_margin="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/cancel"/>
+
+        <TextView
+            android:id="@+id/dialogApplyButton"
+            style="@style/DestinationDialog.Button"
+            android:layout_marginRight="16dp"
+            android:text="@string/apply"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

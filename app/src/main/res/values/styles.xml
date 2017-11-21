@@ -25,4 +25,38 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+
+    <style name="DestinationDialog"/>
+
+    <style name="DestinationDialog.Text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/dialog_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/dialog_horizontal_margin</item>
+    </style>
+
+    <style name="DestinationDialog.Title" parent="DestinationDialog.Text">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="DestinationDialog.Message" parent="DestinationDialog.Text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="DestinationDialog.Button">
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minWidth">64dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:clickable">true</item>
+    </style>
+
 </resources>

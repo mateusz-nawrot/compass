@@ -10,7 +10,9 @@ import android.support.annotation.IntegerRes
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ProgressBar
 
 
@@ -57,4 +59,8 @@ fun String.toOptionalDouble(): Double? {
 
 fun Float.difference(otherFloat: Float) : Float {
     return Math.abs(this - otherFloat)
+}
+
+fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
+    return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
 }

@@ -8,22 +8,24 @@ import javax.inject.Inject
 
 class CompassActivityPresenter @Inject constructor(private val directionsUseCase: GetDirectionsUseCase) : BasePresenter<CompassView>() {
 
-    fun onLocationButtonClick() {
+    fun getDirection(askForPermission: Boolean = true) {
+        val locationPermission: Boolean = view?.locationPermissionGranted() ?: false
 
+        if (!locationPermission && askForPermission) {
+            view?.requestLocationPermission()
+        }
+
+        compositeDisposable.add(directionsUseCase.execute(getDirectionsParam(locationPermission)).subscribe({ direction ->
+            view?.rotateCompass(direction.angle)
+        }))
     }
 
-    fun getDirection() {
+    fun locationPermissionDenied() {
         view?.showLocationPermissionRationale()
-
-        compositeDisposable.add(directionsUseCase.execute(getDirectionsParam(false)).subscribe({ direction ->
-            view?.rotateCompass(direction.angle)
-        }))
     }
 
-    fun getDirectionWithLocation() {
-        compositeDisposable.add(directionsUseCase.execute(getDirectionsParam(true)).subscribe({ direction ->
-            view?.rotateCompass(direction.angle)
-        }))
+    fun onLocationButtonClick() {
+        view?.showDestinationDialog()
     }
 
     private fun getDirectionsParam(locationEnabled: Boolean): DirectionsParam {

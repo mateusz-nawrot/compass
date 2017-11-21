@@ -57,6 +57,14 @@ class MNDirectionsRepository @Inject constructor(private val sensorManager: Sens
         sensorManager.registerListener(accelerometerListener, sensorAccelerometer, SensorManager.SENSOR_DELAY_UI)
         sensorManager.registerListener(magnetometerListener, sensorMagnetic, SensorManager.SENSOR_DELAY_UI)
 
+        // unregister before creating new subject
+        // it is required to avoid leaks after granting location permission and calling getDirectionTo() again
+        // otherwise listeners will be alive till onStop() in activity
+        if (isSubjectInitialized()) {
+            sensorManager.unregisterListener(accelerometerListener)
+            sensorManager.unregisterListener(magnetometerListener)
+        }
+
         subject = PublishSubject.create()
 
         return subject.doOnDispose({
@@ -80,5 +88,14 @@ class MNDirectionsRepository @Inject constructor(private val sensorManager: Sens
             }
         }
         subject.onNext(Direction(orientationAngle))
+    }
+
+    private fun isSubjectInitialized(): Boolean {
+        return try {
+            subject
+            true
+        } catch (exception: UninitializedPropertyAccessException) {
+            false
+        }
     }
 }
