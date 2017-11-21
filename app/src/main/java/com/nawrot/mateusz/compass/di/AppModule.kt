@@ -5,8 +5,10 @@ import android.hardware.SensorManager
 import com.nawrot.mateusz.compass.App
 import com.nawrot.mateusz.compass.data.base.AndroidSchedulersProvider
 import com.nawrot.mateusz.compass.data.directions.MNDirectionsRepository
+import com.nawrot.mateusz.compass.data.initialize.MNInitializeRepository
 import com.nawrot.mateusz.compass.domain.base.SchedulersProvider
 import com.nawrot.mateusz.compass.domain.directions.DirectionsRepository
+import com.nawrot.mateusz.compass.domain.initialize.InitializeRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -19,18 +21,20 @@ abstract class AppModule {
     abstract fun bindContext(app: App): Context
 
     @Binds
-    abstract fun schedulersProvider(androidSchedulersProvider: AndroidSchedulersProvider): SchedulersProvider
+    abstract fun bindSchedulersProvider(androidSchedulersProvider: AndroidSchedulersProvider): SchedulersProvider
 
     @Binds
-    abstract fun recipeRepository(recipeRepository: MNDirectionsRepository): DirectionsRepository
+    abstract fun bindRecipeRepository(recipeRepository: MNDirectionsRepository): DirectionsRepository
 
+    @Binds
+    abstract fun bindInitializeAppRepository(initializeAppRepository: MNInitializeRepository): InitializeRepository
 
     @Module
     companion object {
 
         @JvmStatic
         @Provides
-        fun sensorManager(context: Context): SensorManager {
+        fun provideSensorManager(context: Context): SensorManager {
             return context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         }
 //

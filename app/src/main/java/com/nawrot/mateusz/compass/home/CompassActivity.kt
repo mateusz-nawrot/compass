@@ -2,13 +2,13 @@ package com.nawrot.mateusz.compass.home
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import com.nawrot.mateusz.compass.R
+import com.nawrot.mateusz.compass.base.BaseActivity
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_compass.*
 import javax.inject.Inject
 
-class CompassActivity : AppCompatActivity(), CompassView {
+class CompassActivity : BaseActivity(), CompassView {
 
     @Inject
     lateinit var presenter: CompassActivityPresenter
