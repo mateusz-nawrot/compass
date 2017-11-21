@@ -29,6 +29,7 @@ dependencies {
     implementation project(':data')
 
     testImplementation "junit:junit:$rootProject.junitVersion"
+    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
 
