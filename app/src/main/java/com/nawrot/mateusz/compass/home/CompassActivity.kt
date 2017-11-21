@@ -22,7 +22,7 @@ class CompassActivity : BaseActivity(), CompassView, DestinationDialogActivityIn
     private var destinationLongitude: Double? = null
 
     @Inject
-    lateinit var presenter: CompassActivityPresenter
+    lateinit var presenter: CompassPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)

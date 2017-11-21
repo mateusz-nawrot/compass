@@ -6,7 +6,7 @@ import com.nawrot.mateusz.compass.domain.directions.GetDirectionsUseCase
 import javax.inject.Inject
 
 
-class CompassActivityPresenter @Inject constructor(private val directionsUseCase: GetDirectionsUseCase) : BasePresenter<CompassView>() {
+class CompassPresenter @Inject constructor(private val directionsUseCase: GetDirectionsUseCase) : BasePresenter<CompassView>() {
 
     fun getDirection(askForPermission: Boolean = true) {
         val locationPermission: Boolean = view?.locationPermissionGranted() ?: false
