@@ -2,7 +2,6 @@
 
 package com.nawrot.mateusz.compass
 
-import com.nawrot.mateusz.compass.domain.directions.Direction
 import com.nawrot.mateusz.compass.domain.directions.DirectionsParam
 import com.nawrot.mateusz.compass.domain.directions.GetDirectionsUseCase
 import com.nawrot.mateusz.compass.home.CompassPresenter
@@ -27,7 +26,7 @@ class CompassPresenterTest {
 
     private val emptyDirectionsParam = DirectionsParam(emptyLatLng, emptyLatLng, false)
 
-    private val testDirection = Direction(12f)
+    private val testDirection = 12f
 
     @Mock
     private lateinit var view: CompassView
@@ -83,7 +82,7 @@ class CompassPresenterTest {
 
         presenter.getDirection()
 
-        verify(view).rotateCompass(testDirection.angle)
+        verify(view).rotateCompass(testDirection)
     }
 
     @Test

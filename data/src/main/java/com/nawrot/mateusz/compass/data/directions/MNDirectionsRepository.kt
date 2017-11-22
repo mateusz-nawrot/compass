@@ -6,7 +6,6 @@ import android.location.Location
 import android.location.LocationManager
 import com.nawrot.mateusz.compass.domain.base.ifNotNull
 import com.nawrot.mateusz.compass.domain.directions.AccelerometerEvent
-import com.nawrot.mateusz.compass.domain.directions.Direction
 import com.nawrot.mateusz.compass.domain.directions.DirectionsRepository
 import com.nawrot.mateusz.compass.domain.directions.MagnetometerEvent
 import io.reactivex.Observable
@@ -27,7 +26,7 @@ class MNDirectionsRepository @Inject constructor(private val sensorManager: Sens
 
 
     @SuppressLint("MissingPermission")
-    override fun getDirectionTo(latitude: Double?, longitude: Double?, locationEnabled: Boolean): Observable<Direction> {
+    override fun getDirectionTo(latitude: Double?, longitude: Double?, locationEnabled: Boolean): Observable<Float> {
 
         val accelerometerObservable = Observable.create(ObservableOnSubscribe<AccelerometerEvent> { emitter ->
             val accelerometerListener = object : SensorEventListener {
@@ -61,7 +60,7 @@ class MNDirectionsRepository @Inject constructor(private val sensorManager: Sens
             sensorManager.registerListener(magnetometerListener, sensorMagnetic, SensorManager.SENSOR_DELAY_UI)
         })
 
-        return Observable.zip(accelerometerObservable, magnetometerObservable, BiFunction<AccelerometerEvent, MagnetometerEvent, Direction> { accelerometerEvent, magnetometerEvent ->
+        return Observable.zip(accelerometerObservable, magnetometerObservable, BiFunction<AccelerometerEvent, MagnetometerEvent, Float> { accelerometerEvent, magnetometerEvent ->
             SensorManager.getRotationMatrix(rotationMatrix, null, accelerometerEvent.readings, magnetometerEvent.readings)
             SensorManager.getOrientation(rotationMatrix, orientationAngles)
 
@@ -91,7 +90,7 @@ class MNDirectionsRepository @Inject constructor(private val sensorManager: Sens
                 }
             }
 
-            Direction(azimuth)
+            azimuth
         })
     }
 }

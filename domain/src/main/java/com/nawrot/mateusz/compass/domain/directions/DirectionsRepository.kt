@@ -5,6 +5,6 @@ import io.reactivex.Observable
 
 interface DirectionsRepository {
 
-    fun getDirectionTo(latitude: Double?, longitude: Double?, locationEnabled: Boolean): Observable<Direction>
+    fun getDirectionTo(latitude: Double?, longitude: Double?, locationEnabled: Boolean): Observable<Float>
 
 }
