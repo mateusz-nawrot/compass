@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.jakewharton.rxbinding2.view.RxView
 import com.nawrot.mateusz.compass.R
+import com.nawrot.mateusz.compass.base.clearError
+import com.nawrot.mateusz.compass.base.enableAndSetError
 import com.nawrot.mateusz.compass.base.toOptionalDouble
 import kotlinx.android.synthetic.main.fragment_destination_dialog.*
 
@@ -65,11 +67,11 @@ class DestinationDialog : DialogFragment() {
         RxView.clicks(dialogApplyButton).subscribe { applyButtonClicked() }
 
         getLatitudeFromBundle()?.let {
-            latitudeInput.setText(it.toString())
+            latitudeEditText.setText(it.toString())
         }
 
         getLongitudeFromBundle()?.let {
-            longitudeInput.setText(it.toString())
+            longitudeEditText.setText(it.toString())
         }
     }
 
@@ -83,7 +85,12 @@ class DestinationDialog : DialogFragment() {
     }
 
     private fun applyButtonClicked() {
-        activityInterface?.destinationCoordinatesEntered(latitudeInput.text.toString().toOptionalDouble(), longitudeInput.text.toString().toOptionalDouble())
+        if (!coordinatesAreValid()) {
+            return
+        }
+        activityInterface?.destinationCoordinatesEntered(
+                latitudeEditText.text.toString().toOptionalDouble(),
+                longitudeEditText.text.toString().toOptionalDouble())
         dismiss()
     }
 
@@ -97,6 +104,28 @@ class DestinationDialog : DialogFragment() {
         return if (arguments?.containsKey(DESTINATION_LONGITUDE_KEY) == true) {
             arguments?.getDouble(DESTINATION_LONGITUDE_KEY)
         } else null
+    }
+
+    private fun coordinatesAreValid(): Boolean {
+        val lat = latitudeEditText.text.toString().toOptionalDouble()
+        val lng = longitudeEditText.text.toString().toOptionalDouble()
+
+        val latValid = lat == null || (lat >= -90 && lat <= 90)
+        val lngValid = lng == null || (lng >= -180 && lng <= 180)
+
+        if (!latValid) {
+            latitudeInputLayout.enableAndSetError(R.string.error_latitude_not_valid)
+        } else {
+            latitudeInputLayout.clearError()
+        }
+
+        if (!lngValid) {
+            longitudeInputLayout.enableAndSetError(R.string.error_longitude_not_valid)
+        } else {
+            longitudeInputLayout.clearError()
+        }
+
+        return latValid && lngValid
     }
 
 

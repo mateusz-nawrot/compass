@@ -24,13 +24,14 @@
         android:text="@string/destination_dialog_message"/>
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/latitudeInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dialog_horizontal_margin"
         android:layout_marginRight="@dimen/dialog_horizontal_margin">
 
         <com.nawrot.mateusz.compass.view.ClearableEditText
-            android:id="@+id/latitudeInput"
+            android:id="@+id/latitudeEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/latitude"
@@ -39,13 +40,14 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/longitudeInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dialog_horizontal_margin"
         android:layout_marginRight="@dimen/dialog_horizontal_margin">
 
         <com.nawrot.mateusz.compass.view.ClearableEditText
-            android:id="@+id/longitudeInput"
+            android:id="@+id/longitudeEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/longitude"

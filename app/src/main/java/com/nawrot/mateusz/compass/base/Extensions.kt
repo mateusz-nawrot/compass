@@ -8,7 +8,9 @@ import android.graphics.drawable.Drawable
 import android.support.annotation.ColorRes
 import android.support.annotation.DimenRes
 import android.support.annotation.DrawableRes
+import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
+import android.support.design.widget.TextInputLayout
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
@@ -69,4 +71,14 @@ fun Float.difference(otherFloat: Float) : Float {
 
 fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
+}
+
+fun TextInputLayout.clearError() {
+    isErrorEnabled = false
+    error = null
+}
+
+fun TextInputLayout.enableAndSetError(@StringRes errorRes: Int) {
+    isErrorEnabled = true
+    error = context.getString(errorRes)
 }
