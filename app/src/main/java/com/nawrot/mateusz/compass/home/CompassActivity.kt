@@ -90,12 +90,16 @@ class CompassActivity : BaseActivity(), CompassView, DestinationDialogActivityIn
     }
 
     override fun hideDestinationIndicator() {
+        destinationLatitude = null
+        destinationLongitude = null
         destinationIndicator.visibility = View.GONE
         locationIcon.setDrawable(R.drawable.ic_location_off)
         locationFab.setDrawable(R.drawable.ic_add_location)
     }
 
     override fun showDestinationIndicator(latitude: Double, longitude: Double) {
+        destinationLatitude = latitude
+        destinationLongitude = longitude
         locationIcon.setDrawable(R.drawable.ic_location_on)
         locationFab.setDrawable(R.drawable.ic_edit_location)
         destinationIndicator.visibility = View.VISIBLE
