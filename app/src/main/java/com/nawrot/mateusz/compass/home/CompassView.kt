@@ -19,4 +19,8 @@ interface CompassView : BaseView {
 
     fun showDestinationDialog()
 
+    fun showDestinationIndicator(latitude: Double, longitude: Double)
+
+    fun hideDestinationIndicator()
+
 }

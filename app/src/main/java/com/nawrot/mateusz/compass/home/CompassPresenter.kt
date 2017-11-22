@@ -26,8 +26,17 @@ class CompassPresenter @Inject constructor(private val directionsUseCase: GetDir
         view?.showLocationPermissionRationale()
     }
 
-    fun onLocationButtonClick() {
+    fun destinationButtonClicked() {
         view?.showDestinationDialog()
+    }
+
+    fun destinationCoordinatesEntered(latitude: Double?, longitude: Double?) {
+        if (latitude != null && longitude != null) {
+            view?.showDestinationIndicator(latitude, longitude)
+        } else {
+            view?.hideDestinationIndicator()
+        }
+        getDirection()
     }
 
     private fun getDirectionsParam(locationEnabled: Boolean): DirectionsParam {

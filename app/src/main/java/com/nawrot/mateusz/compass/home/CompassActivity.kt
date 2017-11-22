@@ -7,7 +7,6 @@ import android.view.View
 import com.jakewharton.rxbinding2.view.RxView
 import com.nawrot.mateusz.compass.R
 import com.nawrot.mateusz.compass.base.*
-import com.nawrot.mateusz.compass.domain.base.ifNotNull
 import com.nawrot.mateusz.compass.home.destination.DestinationDialog
 import com.nawrot.mateusz.compass.home.destination.DestinationDialogActivityInterface
 import dagger.android.AndroidInjection
@@ -32,7 +31,7 @@ class CompassActivity : BaseActivity(), CompassView, DestinationDialogActivityIn
         setContentView(R.layout.activity_compass)
         setSupportActionBar(toolbar)
 
-        RxView.clicks(locationFab).subscribe { presenter.onLocationButtonClick() }
+        RxView.clicks(locationFab).subscribe { presenter.destinationButtonClicked() }
     }
 
     override fun onStart() {
@@ -50,7 +49,7 @@ class CompassActivity : BaseActivity(), CompassView, DestinationDialogActivityIn
         if (angle.difference(-currentAngle) < 1f) {
             return
         }
-        normaliseText(angle.toInt())
+        formatAngleText(angle.toInt())
         currentAngle = -angle
         compassArrow.rotateImage(currentAngle)
     }
@@ -87,21 +86,20 @@ class CompassActivity : BaseActivity(), CompassView, DestinationDialogActivityIn
     }
 
     override fun destinationCoordinatesEntered(latitude: Double?, longitude: Double?) {
-        destinationLatitude = latitude
-        destinationLongitude = longitude
+        presenter.destinationCoordinatesEntered(latitude, longitude)
+    }
 
-        presenter.getDirection()
-
+    override fun hideDestinationIndicator() {
         destinationIndicator.visibility = View.GONE
         locationIcon.setDrawable(R.drawable.ic_location_off)
         locationFab.setDrawable(R.drawable.ic_add_location)
+    }
 
-        ifNotNull(destinationLatitude, destinationLongitude, { lat, lng ->
-            locationIcon.setDrawable(R.drawable.ic_location_on)
-            locationFab.setDrawable(R.drawable.ic_edit_location)
-            destinationIndicator.visibility = View.VISIBLE
-            destinationIndicator.text = getString(R.string.lat_lng_placeholder, lat, lng)
-        })
+    override fun showDestinationIndicator(latitude: Double, longitude: Double) {
+        locationIcon.setDrawable(R.drawable.ic_location_on)
+        locationFab.setDrawable(R.drawable.ic_edit_location)
+        destinationIndicator.visibility = View.VISIBLE
+        destinationIndicator.text = getString(R.string.lat_lng_placeholder, latitude, longitude)
     }
 
     override fun getDestinationLatitude(): Double? {
@@ -112,7 +110,7 @@ class CompassActivity : BaseActivity(), CompassView, DestinationDialogActivityIn
         return destinationLongitude
     }
 
-    private fun normaliseText(angle: Int) {
+    private fun formatAngleText(angle: Int) {
         var formattedAngle = angle
 
         formattedAngle = if (formattedAngle < 0) {
