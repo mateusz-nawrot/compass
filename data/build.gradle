@@ -23,14 +23,4 @@ dependencies {
     api project (':domain')
 
     api "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
-
-    //retrofit & okhttp
-    api "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
-    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
-    api "com.squareup.retrofit2:converter-moshi:$rootProject.retrofitVersion"
-
-    api "com.squareup.okhttp3:logging-interceptor:$rootProject.okHttpVersion"
-    api "com.squareup.okhttp3:okhttp:$rootProject.okHttpVersion"
-
-    api "com.squareup.moshi:moshi-kotlin:$rootProject.moshiVersion"
 }

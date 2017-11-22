@@ -3,7 +3,6 @@ package com.nawrot.mateusz.compass
 import android.app.Activity
 import android.app.Application
 import com.nawrot.mateusz.compass.di.DaggerAppComponent
-import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -23,11 +22,6 @@ class App : Application(), HasActivityInjector {
                 .application(this)
                 .build()
                 .inject(this)
-
-        if (LeakCanary.isInAnalyzerProcess(this)){
-            return
-        }
-        LeakCanary.install(this)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {

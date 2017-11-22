@@ -30,21 +30,11 @@ dependencies {
 
     testImplementation "junit:junit:$rootProject.junitVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
-    androidTestImplementation "com.android.support.test:runner:$rootProject.testRunnerVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
-
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
 
     //support libs
     implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
     implementation "com.android.support:design:$rootProject.supportLibraryVersion"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
-
-    //architecture components
-    compile "android.arch.lifecycle:runtime:$rootProject.lifecycleVersion"
-    compile "android.arch.lifecycle:extensions:$rootProject.lifecycleVersion"
-    kapt "android.arch.lifecycle:compiler:$rootProject.lifecycleVersion"
 
     //dagger
     kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
@@ -55,8 +45,4 @@ dependencies {
 
     //rxbindings
     implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$rootProject.rxBindingVersion"
-    implementation "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$rootProject.rxBindingVersion"
-    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rootProject.rxBindingVersion"
-    implementation "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$rootProject.rxBindingVersion"
-
 }
