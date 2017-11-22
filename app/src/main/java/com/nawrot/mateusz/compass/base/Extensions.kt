@@ -4,15 +4,17 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.support.annotation.ColorRes
 import android.support.annotation.DimenRes
-import android.support.annotation.IntegerRes
+import android.support.annotation.DrawableRes
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ProgressBar
 
 
@@ -28,8 +30,12 @@ fun Context.getDimenValue(@DimenRes dimen: Int): Float {
     return resources.getDimension(dimen)
 }
 
-fun Context.getIntegerValue(@IntegerRes integerRes: Int): Int {
-    return resources.getInteger(integerRes)
+fun ImageView.setDrawable(@DrawableRes imageDrawable: Int) {
+    setImageDrawable(ContextCompat.getDrawable(context, imageDrawable))
+}
+
+fun Context.getDrawableCompat(@DrawableRes imageDrawable: Int): Drawable? {
+    return ContextCompat.getDrawable(this, imageDrawable)
 }
 
 fun Context.isPermissionGranted(permission: String): Boolean {

@@ -18,8 +18,24 @@ class DestinationDialog : DialogFragment() {
     private var activityInterface: DestinationDialogActivityInterface? = null
 
     companion object {
-        fun getInstance(): DestinationDialog {
-            return DestinationDialog()
+
+        private val DESTINATION_LATITUDE_KEY: String = "DESTINATION_LATITUDE"
+        private val DESTINATION_LONGITUDE_KEY: String = "DESTINATION_LONGITUDE"
+
+        fun getInstance(destinationLatitude: Double?, destinationLongitue: Double?): DestinationDialog {
+            val instance = DestinationDialog()
+            val bundle = Bundle()
+
+            destinationLatitude?.let {
+                bundle.putDouble(DESTINATION_LATITUDE_KEY, destinationLatitude)
+            }
+
+            destinationLongitue?.let {
+                bundle.putDouble(DESTINATION_LONGITUDE_KEY, destinationLongitue)
+            }
+
+            instance.arguments = bundle
+            return instance
         }
 
         val TAG: String = DestinationDialog::class.java.simpleName
@@ -47,6 +63,14 @@ class DestinationDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         RxView.clicks(dialogCancelButton).subscribe { cancelButtonClicked() }
         RxView.clicks(dialogApplyButton).subscribe { applyButtonClicked() }
+
+        getLatitudeFromBundle()?.let {
+            latitudeInput.setText(it.toString())
+        }
+
+        getLongitudeFromBundle()?.let {
+            longitudeInput.setText(it.toString())
+        }
     }
 
     override fun onDestroy() {
@@ -62,5 +86,18 @@ class DestinationDialog : DialogFragment() {
         activityInterface?.destinationCoordinatesEntered(latitudeInput.text.toString().toOptionalDouble(), longitudeInput.text.toString().toOptionalDouble())
         dismiss()
     }
+
+    private fun getLatitudeFromBundle(): Double? {
+        return if (arguments?.containsKey(DESTINATION_LATITUDE_KEY) == true) {
+            arguments?.getDouble(DESTINATION_LATITUDE_KEY)
+        } else null
+    }
+
+    private fun getLongitudeFromBundle(): Double? {
+        return if (arguments?.containsKey(DESTINATION_LONGITUDE_KEY) == true) {
+            arguments?.getDouble(DESTINATION_LONGITUDE_KEY)
+        } else null
+    }
+
 
 }

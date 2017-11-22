@@ -1,4 +1,4 @@
-package com.nawrot.mateusz.compass
+package com.nawrot.mateusz.compass.view
 
 import android.content.Context
 import android.graphics.Canvas

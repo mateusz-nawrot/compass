@@ -3,9 +3,11 @@ package com.nawrot.mateusz.compass.home
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
 import com.jakewharton.rxbinding2.view.RxView
 import com.nawrot.mateusz.compass.R
 import com.nawrot.mateusz.compass.base.*
+import com.nawrot.mateusz.compass.domain.base.ifNotNull
 import com.nawrot.mateusz.compass.home.destination.DestinationDialog
 import com.nawrot.mateusz.compass.home.destination.DestinationDialogActivityInterface
 import dagger.android.AndroidInjection
@@ -81,7 +83,7 @@ class CompassActivity : BaseActivity(), CompassView, DestinationDialogActivityIn
     }
 
     override fun showDestinationDialog() {
-        DestinationDialog.getInstance().show(supportFragmentManager, DestinationDialog.TAG)
+        DestinationDialog.getInstance(destinationLatitude, destinationLongitude).show(supportFragmentManager, DestinationDialog.TAG)
     }
 
     override fun destinationCoordinatesEntered(latitude: Double?, longitude: Double?) {
@@ -89,6 +91,17 @@ class CompassActivity : BaseActivity(), CompassView, DestinationDialogActivityIn
         destinationLongitude = longitude
 
         presenter.getDirection()
+
+        destinationIndicator.visibility = View.GONE
+        locationIcon.setDrawable(R.drawable.ic_location_off)
+        locationFab.setDrawable(R.drawable.ic_add_location)
+
+        ifNotNull(destinationLatitude, destinationLongitude, { lat, lng ->
+            locationIcon.setDrawable(R.drawable.ic_location_on)
+            locationFab.setDrawable(R.drawable.ic_edit_location)
+            destinationIndicator.visibility = View.VISIBLE
+            destinationIndicator.text = getString(R.string.lat_lng_placeholder, lat, lng)
+        })
     }
 
     override fun getDestinationLatitude(): Double? {

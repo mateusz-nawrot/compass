@@ -6,7 +6,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    android:paddingTop="24dp">
+    android:paddingTop="@dimen/dialog_horizontal_margin">
 
     <View
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         android:layout_marginLeft="@dimen/dialog_horizontal_margin"
         android:layout_marginRight="@dimen/dialog_horizontal_margin">
 
-        <EditText
+        <com.nawrot.mateusz.compass.view.ClearableEditText
             android:id="@+id/latitudeInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,11 +44,10 @@
         android:layout_marginLeft="@dimen/dialog_horizontal_margin"
         android:layout_marginRight="@dimen/dialog_horizontal_margin">
 
-        <EditText
+        <com.nawrot.mateusz.compass.view.ClearableEditText
             android:id="@+id/longitudeInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_clear"
             android:hint="@string/longitude"
             android:inputType="numberSigned|numberDecimal"/>
 
@@ -70,7 +69,7 @@
         <TextView
             android:id="@+id/dialogApplyButton"
             style="@style/DestinationDialog.Button"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:text="@string/apply"/>
 
 

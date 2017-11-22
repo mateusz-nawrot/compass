@@ -10,4 +10,5 @@
     <string name="destination_dialog_message">Please enter destination coordinates</string>
     <string name="cancel">Cancel</string>
     <string name="apply">Apply</string>
+    <string name="lat_lng_placeholder">%1$f, %2$f</string>
 </resources>
