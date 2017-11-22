@@ -15,6 +15,8 @@ class CompassPresenter @Inject constructor(private val directionsUseCase: GetDir
             view?.requestLocationPermission()
         }
 
+        clearPreviousDisposableIfNecessary()
+
         compositeDisposable.add(directionsUseCase.execute(getDirectionsParam(locationPermission)).subscribe({ direction ->
             view?.rotateCompass(direction.angle)
         }))
@@ -30,6 +32,10 @@ class CompassPresenter @Inject constructor(private val directionsUseCase: GetDir
 
     private fun getDirectionsParam(locationEnabled: Boolean): DirectionsParam {
         return DirectionsParam(view?.getDestinationLatitude(), view?.getDestinationLongitude(), locationEnabled)
+    }
+
+    private fun clearPreviousDisposableIfNecessary() {
+        if (compositeDisposable.size() > 0) compositeDisposable.clear()
     }
 
 }

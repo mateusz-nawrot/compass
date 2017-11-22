@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright © 2017 Nedbank. All rights reserved.
-  -->
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -38,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/latitude"
-            android:inputType="numberDecimal"/>
+            android:inputType="numberSigned|numberDecimal"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -52,8 +48,9 @@
             android:id="@+id/longitudeInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_clear"
             android:hint="@string/longitude"
-            android:inputType="numberDecimal"/>
+            android:inputType="numberSigned|numberDecimal"/>
 
     </android.support.design.widget.TextInputLayout>
 

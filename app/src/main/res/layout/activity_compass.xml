@@ -30,21 +30,56 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
+        <LinearLayout
+            android:id="@+id/destinationContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/ic_edit_location"/>
+
+            <TextView
+                android:id="@+id/destinationIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50.2525, 20.789"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/angleIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:text="78"/>
 
-        <com.nawrot.mateusz.compass.RotationImageView
-            android:id="@+id/compass"
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:src="@drawable/compass_background_small"/>
+            android:background="@drawable/compass_background_black">
+
+            <com.nawrot.mateusz.compass.RotationImageView
+                android:id="@+id/compassArrow"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/compass_needle"/>
+
+        </FrameLayout>
 
     </LinearLayout>
 

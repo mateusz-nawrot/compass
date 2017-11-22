@@ -48,9 +48,9 @@ class CompassActivity : BaseActivity(), CompassView, DestinationDialogActivityIn
         if (angle.difference(-currentAngle) < 1f) {
             return
         }
-        angleIndicator.text = angle.toInt().toString()
+        normaliseText(angle.toInt())
         currentAngle = -angle
-        compass.rotateImage(currentAngle)
+        compassArrow.rotateImage(currentAngle)
     }
 
     override fun showLocationPermissionRationale() {
@@ -97,6 +97,18 @@ class CompassActivity : BaseActivity(), CompassView, DestinationDialogActivityIn
 
     override fun getDestinationLongitude(): Double? {
         return destinationLongitude
+    }
+
+    private fun normaliseText(angle: Int) {
+        var formattedAngle = angle
+
+        formattedAngle = if (formattedAngle < 0) {
+            Math.abs(formattedAngle)
+        } else {
+            360 - formattedAngle
+        }
+
+        angleIndicator.text = formattedAngle.toString()
     }
 
 }
