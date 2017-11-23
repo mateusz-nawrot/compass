@@ -25,7 +25,7 @@ abstract class AppModule {
     abstract fun bindSchedulersProvider(androidSchedulersProvider: AndroidSchedulersProvider): SchedulersProvider
 
     @Binds
-    abstract fun bindRecipeRepository(recipeRepository: MNDirectionsRepository): DirectionsRepository
+    abstract fun bindDirectionsRepository(recipeRepository: MNDirectionsRepository): DirectionsRepository
 
     @Binds
     abstract fun bindInitializeAppRepository(initializeAppRepository: MNInitializeRepository): InitializeRepository
